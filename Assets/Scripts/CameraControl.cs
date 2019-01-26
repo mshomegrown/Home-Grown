@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CameraControl : MonoBehaviour {
     [SerializeField] float speed = 2f;
+    [SerializeField] float lerpSpeed = 1f;
 
     Transform startLerp;
     Transform endLerp;

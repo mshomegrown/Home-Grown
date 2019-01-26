@@ -6,6 +6,7 @@ public class LightControl : MonoBehaviour {
     float moveX;
     float moveZ;
     [SerializeField] float speed = 2f;
+    [SerializeField] float lerpSpeed = 1f;
 
     Transform startLerp;
     Transform endLerp;
@@ -22,7 +23,7 @@ public class LightControl : MonoBehaviour {
         transform.position = transform.position + new Vector3(-moveX * speed, 0, -moveZ * speed) * Time.deltaTime;
 
         if(moving){
-            float distanceCovered = (Time.time - startTime) * speed;
+            float distanceCovered = (Time.time - startTime) * lerpSpeed;
             float fracJourney = distanceCovered / distance;
 
             transform.position = Vector3.Lerp(startLerp.position, endLerp.position, fracJourney);
