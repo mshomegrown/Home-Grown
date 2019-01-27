@@ -8,8 +8,8 @@ public class RoomManager : MonoBehaviour {
     [SerializeField] GameObject secondObject;
     [SerializeField] GameObject thirdObject;
 
-    [SerializeField] GameObject toEnable;
-    [SerializeField] GameObject toDisable;
+    [SerializeField] List<GameObject> toEnable = new List<GameObject>();
+    [SerializeField] List<GameObject> toDisable = new List<GameObject>();
 
     [SerializeField] GameObject cameraTransform;
     [SerializeField] Transform cameraEnd;
@@ -36,8 +36,15 @@ public class RoomManager : MonoBehaviour {
         if (first && second && third && !actions)
         {
             actions = true;
-            toEnable.SetActive(true);
-            toDisable.SetActive(false);
+            foreach(var enabler in toEnable) {
+                enabler.SetActive(true);
+            }
+
+            foreach (var disabler in toDisable)
+            {
+                disabler.SetActive(false);
+            }
+
             playerTransform.GetComponent<LightControl>().Lerper(playerTransform.transform,playerEnd);
             playerTransform.GetComponent<LightControl>().Tracker(trackNumber);
             cameraTransform.GetComponent<CameraControl>().Lerper(cameraTransform.transform,cameraEnd);
