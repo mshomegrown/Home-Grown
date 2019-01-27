@@ -16,6 +16,8 @@ public class RoomManager : MonoBehaviour {
     [SerializeField] GameObject playerTransform;
     [SerializeField] Transform playerEnd;
 
+    [SerializeField] int trackNumber;
+
     bool actions = false;
 
 
@@ -23,11 +25,9 @@ public class RoomManager : MonoBehaviour {
     bool second = false;
     bool third = false;
 
-	// Update is called once per frame
-	void Update ()
+    void Update ()
     {
         CheckSelected();
-
 		Enablers();
     }
 
@@ -39,6 +39,7 @@ public class RoomManager : MonoBehaviour {
             toEnable.SetActive(true);
             toDisable.SetActive(false);
             playerTransform.GetComponent<LightControl>().Lerper(playerTransform.transform,playerEnd);
+            playerTransform.GetComponent<LightControl>().Tracker(trackNumber);
             cameraTransform.GetComponent<CameraControl>().Lerper(cameraTransform.transform,cameraEnd);
 
         }

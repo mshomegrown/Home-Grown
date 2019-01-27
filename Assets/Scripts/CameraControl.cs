@@ -19,7 +19,7 @@ public class CameraControl : MonoBehaviour {
 	void Update () {
         if (moving)
         {
-            float distanceCovered = (Time.time - startTime) * speed;
+            float distanceCovered = (Time.time - startTime) * lerpSpeed;
             float fracJourney = distanceCovered / distance;
 
             transform.position = Vector3.Lerp(startLerp.position, endLerp.position, fracJourney);

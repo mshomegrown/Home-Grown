@@ -32,6 +32,7 @@ public class LightIncrease : MonoBehaviour {
 
     void Update()
     {
+        print(maxIntensity);
         if (changeRange)
         {
           
@@ -54,9 +55,6 @@ public class LightIncrease : MonoBehaviour {
                 }
 
         }
-
-        //if we can get room tag name or room bool
-
 
     }
 }

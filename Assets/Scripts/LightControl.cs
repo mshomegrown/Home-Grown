@@ -3,8 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class LightControl : MonoBehaviour {
+
     float moveX;
     float moveZ;
+
+    AudioSource audioSource;
+    [SerializeField] List<AudioClip> tracks = new List<AudioClip>();
+
     [SerializeField] float speed = 2f;
     [SerializeField] float lerpSpeed = 1f;
 
@@ -15,9 +20,15 @@ public class LightControl : MonoBehaviour {
 
     float startTime;
     float distance;
-	
-	// Update is called once per frame
-	void Update () {
+
+    private void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+        audioSource.PlayOneShot(tracks[0]);
+    }
+
+    // Update is called once per frame
+    void Update () {
         moveX = Input.GetAxis("Horizontal");
         moveZ = Input.GetAxis("Vertical");
         transform.position = transform.position + new Vector3(-moveX * speed, 0, -moveZ * speed) * Time.deltaTime;
@@ -32,6 +43,11 @@ public class LightControl : MonoBehaviour {
             }
         }
 	}
+
+    public void Tracker (int trackNumber) {
+        audioSource.Stop();
+        audioSource.PlayOneShot(tracks[trackNumber]);
+    }
 
     public void Lerper (Transform start, Transform end) {
 		startLerp = start;
